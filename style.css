@@ -1,0 +1,167 @@
+body,
+html {
+  background-color: rgb(135,169,107);
+  height: 100%;
+  font-style: Courier;
+}
+
+.header {
+	text-align: center;
+	width: 80%;
+	font-style: Courier;
+	color:  rgb(33,66,30);
+	margin-left: 10%; 
+	padding: 1%;
+}
+
+.page {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.page_space {
+	margin-left: 10%;
+	margin-bottom: 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(216,228,188);
+	border: rgb(33,66,30) 5px solid;
+	height: 80%;
+	width: 80%;
+}
+
+.map_box {
+  position: relative;
+  background: rgb(123,182,97);
+  height: 80%;
+  width: 58.5%;
+  margin-right: 7%;
+  border: rgb(33,66,30) 5px solid;
+}
+
+.option_box {
+	background: rgb(143,151,121);
+	height: 80%;
+	width: 18.5%;
+	border: rgb(33,66,30) 5px solid;
+	font-style: Courier;
+}
+
+input {
+	width: 100%;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.logo {
+	width: 400px;
+}
+
+.logo_option {
+	width: 100px;
+	margin-left: 25%;
+}
+
+/* Customize the label (the container) */
+.container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	text-align: left;
+	font-size: 18px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+
+  .container2, .container3, .container4{
+	display: block;
+	position: relative;
+	text-align: left;
+	font-size: 18px;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+	background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+	background-color: rgb(33,66,30);
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+	display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+  }
+
+  .button {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: rgb(33,66,30);
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 17px;
+	padding: 1px;
+	width: 75px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+  }
+  
+.footer{
+	text-align: center;
+	width: 80%;
+	padding: 0.25%;
+	font-style: Courier;
+	font-size: 18px;
+	background-color:  rgb(33,66,30);
+	color: rgb(123,182,97);
+	margin-left: 10%; 
+}
