@@ -18,28 +18,13 @@
 #         to:
 #             d [ w  ] ← d [ u  ] + waga krawędzi u–w
 #             p [ w  ] ← u	sprawdzamy koszt dojścia. Jeśli mamy niższy, to modyfikujemy koszt i zmieniamy poprzednika w na u
-# K13:	Zakończ
+# K13:	Zakończ 
 
 
-import 
+from ztmDatabaseControls import *
 
-numberBig=1000
-busStops=100
 
-checked_bus_id=set() #zbior Q
+busStops = getBusStops()
 
-access_costs=list()  #tablica d
-
-was_on_path=list()  #tablica p
-
-#wypelnic d najwieksza wartoscia dodatnia
-
-for i in range(busStops):
-    access_costs[i] = numberBig
-
-for i in range(busStops):
-    was_on_path[i] = -1
-
-startId = input() #name of the bus stop/ id
-access_costs(id)=0
+print(busStops[324].lines)
 

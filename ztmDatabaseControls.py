@@ -54,6 +54,7 @@ busTrips = dict()
 
 def update_database():
     global busLines
+    global busStops
 
     response = json.loads(requests.get(busLinesUrl).text)
     for newBusLine in response["2023-01-12"]["routes"]:
@@ -89,6 +90,14 @@ def update_database():
     #buslines.stops is a dictionary with key being stop number and value being stop id 
         busStops[newTripStop["stopId"]].addLine(newTripStop["routeId"])
         busLines[newTripStop["routeId"]].addStop(newTripStop["stopSequence"],newTripStop["stopId"])
+
+def getBusStops():
+    return busStops
+
+def getBusLines():
+    return busLines
+
+
 
 
     save("newBusStops", newBusStop)
