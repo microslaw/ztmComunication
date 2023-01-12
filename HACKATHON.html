@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+	<title>DriveMeOver</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    
+	<div class="page">
+        <div class="header">
+            <h1><strong>DriveMeOver</strong></h1>
+        </div>
+        <div class="page_space">
+          <div class="map_box" id="m">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d37189.07690358929!2d18.61353485!3d54.3690439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2spl!4v1673527308534!5m2!1sen!2spl" width=100% height=100% style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="option_box">
+            <fieldset id="bus_stops">
+                <label for="first_stop">Przystanek początkowy:</label><br>
+                <input type="text" id="first_stop" name="first_stop"><br>
+                <label for="last_stop">Przystanek końcowy:</label><br>
+                <input type="text" id="last_stop" name="last_stop"><br><br>
+            </fieldset>
+            <fieldset id="preferences">
+                <p>Droga:</p><br>
+                <input type="checkbox" id="fastest" name="fastest"><br>
+                <label for="fastest">najszybsza</label><br>
+                <input type="checkbox" id="shortest" name="shortest"><br><br>
+                <label for="shortest">najkrótsza</label><br>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

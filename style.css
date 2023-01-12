@@ -1,0 +1,52 @@
+body,
+html {
+  background-color: rgb(135,169,107);
+  height: 100%;
+}
+
+.header {
+	text-align: center;
+	width: 80%;
+	font-style: Courier;
+	color:  rgb(33,66,30);
+	margin-left: 10%;
+	padding: 1%;
+}
+
+.page {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.page_space {
+	margin-left: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(216,228,188);
+	border: rgb(33,66,30) 5px solid;
+	height: 80%;
+	width: 80%;
+}
+
+.map_box {
+  position: relative;
+  background: rgb(123,182,97);
+  height: 80%;
+  width: 58.5%;
+  margin-right: 7%;
+  border: rgb(33,66,30) 5px solid;
+}
+
+.option_box {
+	background: rgb(143,151,121);
+	height: 80%;
+	width: 18.5%;
+	border: rgb(33,66,30) 5px solid;
+}
+
+input {
+	width: 100%;
+	box-sizing: border-box;
+}
