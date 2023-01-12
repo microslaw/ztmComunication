@@ -9,18 +9,19 @@ html {
 	width: 80%;
 	font-style: Courier;
 	color:  rgb(33,66,30);
-	margin-left: 10%;
+	margin-left: 10%; 
 	padding: 1%;
 }
 
 .page {
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .page_space {
 	margin-left: 10%;
+	margin-bottom: 10%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
