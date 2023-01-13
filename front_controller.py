@@ -24,8 +24,39 @@ def pass_args():
         last_stop = request.form['last_stop']
         date = datetime.strptime(request.form['date'],
                                 "%Y-%m-%d")
-        time = datetime.strptime(request.form["time"],"%H-%M-%S")
+        time = datetime.strptime(request.form["time"],"%H:%M")
+        busLines = getBusLines()
+        busStops = getBusStops()
+        
+        for stop in busStops:
+            if first_stop == busStops[stop].name:
+                first_stop = busStops[stop].id
+                break
 
+        for stop in busStops:
+            if last_stop == busStops[stop].name:
+                last_stop = busStops[stop].id
+                break
+        
+        matchingLine = {}
+
+        for line in busLines:
+            if first_stop and last_stop in busLines[line].stops:
+                matchingLine= busLines[line]
+                break
+        if(matchingLine == {}):
+            return render_template("no_output.html")
+
+        eta, tripId= getTimeAtStop(first_stop, matchingLine.id, dateTime=date+time)
+        etd, tripId = getTimeAtStop(last_stop, matchingLine.id, tripId)
+        delta = etd-eta
+        name = matchingLine.shortName
+        
+        return render_template("output.html", eta = eta, etd =etd, delta = delta, sname = name)
+
+        
+
+            
 
 
 
