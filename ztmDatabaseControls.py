@@ -1,12 +1,11 @@
 import requests
 import json
-import pickle
 from datetime import date, datetime
 
 
-busLinesUrl = "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/22313c56-5acf-41c7-a5fd-dc5dc72b3851/download"
-busStopsUrl = "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/4c4025f0-01bf-41f7-a39f-d156d201b82b/download"
-linesAndStopsUrl = "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/3115d29d-b763-4af5-93f6-763b835967d6/download"
+__busLinesUrl = "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/22313c56-5acf-41c7-a5fd-dc5dc72b3851/download"
+__busStopsUrl = "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/4c4025f0-01bf-41f7-a39f-d156d201b82b/download"
+__linesAndStopsUrl = "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/3115d29d-b763-4af5-93f6-763b835967d6/download"
 
 
 class busStop:
@@ -42,47 +41,34 @@ class busTrip:
         self.startTime = startTime
         self.id = id
 
-
-def save( filename, object):
-    with open(filename, 'wb') as saveFile:
-        pickle.dump(object, saveFile)
-
-def load(filename):
-    with open(filename, 'rb') as loadFile:
-        pickle.dump(object, loadFile)
-    return object
-
-busLines = dict()
-busStops = dict()
-busTrips = dict()
+__busLines = dict()
+__busStops = dict()
 today = (date.today()).strftime("%Y-%m-%d")
 
 
 def update_database():
-    global busLines
-    global busStops
+    global __busLines
+    global __busStops
 
-    response = json.loads(requests.get(busLinesUrl).text)
+    response = json.loads(requests.get(__busLinesUrl).text)
     for newBusLine in response[today]["routes"]:
         newBusLine.pop("agencyId")
         newBusLine.pop("activationDate")
         newBusLine.pop("routeType")
 
-        busLines[newBusLine["routeId"]] = busLine(newBusLine["routeId"], newBusLine["routeLongName"], newBusLine["routeShortName"])
+        __busLines[newBusLine["routeId"]] = busLine(newBusLine["routeId"], newBusLine["routeLongName"], newBusLine["routeShortName"])
     
-    #save("busLiness", busLines)
+    #save("__busLiness", __busLines)
 
 
-    response = json.loads(requests.get(busStopsUrl).text) 
+    response = json.loads(requests.get(__busStopsUrl).text) 
 
     for newBusStop in response[today]["stops"]:
         newBusStop.pop("activationDate")
-        busStops[newBusStop["stopId"]] = busStop(newBusStop["stopId"], newBusStop["stopCode"], newBusStop["stopDesc"], newBusStop["onDemand"] )
+        __busStops[newBusStop["stopId"]] = busStop(newBusStop["stopId"], newBusStop["stopCode"], newBusStop["stopDesc"], newBusStop["onDemand"] )
 
-    #save("newBusStops", newBusStop)
-    tmp = dict()
     
-    response = json.loads(requests.get(linesAndStopsUrl).text) 
+    response = json.loads(requests.get(__linesAndStopsUrl).text) 
     for newTripStop in response[today]["stopsInTrip"]:
         newTripStop.pop("agencyId")
         newTripStop.pop("topologyVersionId")
@@ -91,17 +77,17 @@ def update_database():
         newTripStop.pop("tripId")
 
 
-    #buslines.stops is a dictionary with key being stop number and value being stop id 
-        busStops[newTripStop["stopId"]].addLine(newTripStop["routeId"])
-        busLines[newTripStop["routeId"]].addStop(newTripStop["stopSequence"],newTripStop["stopId"])
+    #__buslines.stops is a dictionary with key being stop number and value being stop id 
+        __busStops[newTripStop["stopId"]].addLine(newTripStop["routeId"])
+        __busLines[newTripStop["routeId"]].addStop(newTripStop["stopSequence"],newTripStop["stopId"])
 
 def getBusStops():
-    return busStops
+    return __busStops
 
 def getBusLines():
-    return busLines
+    return __busLines
 
-def isoToSeconds(iso):
+def __isoToSeconds(iso):
     time = iso.split("-")[2]
     day = 31-int(time.split("T")[0])
     hour, minute, second = (time.split("T")[1]).split(":")
@@ -146,8 +132,8 @@ def getTimeAtStop(stopId, lineId, tripId = -1, dateTime = today):
         arrival.pop("islupek")
         arrival.pop("stopShortName")
         arrival.pop("stopHeadsign")
-        if fastestBusArrival<isoToSeconds(arrival["arrivalTime"]) or fastestBusArrival == 0:
-            fastestBusArrival = isoToSeconds(arrival["arrivalTime"])
+        if fastestBusArrival<__isoToSeconds(arrival["arrivalTime"]) or fastestBusArrival == 0:
+            fastestBusArrival = __isoToSeconds(arrival["arrivalTime"])
             fastestTripId = arrival["tripId"]
     
         
@@ -169,5 +155,3 @@ def getTimeBetweenStops(stopA, stopB, lineId, dateTime = today):
 
 update_database()
 print(getTimeBetweenStops(7988,7990,126))
-
-#{'arrivalTime': '1899-12-30T07:28:00', 'departureTime': '1899-12-30T07:28:00', 'stopId': 201, 'stopSequence': 36, 'order': 1, 'onDemand': 0, 'wheelchairAccessible': 1}
