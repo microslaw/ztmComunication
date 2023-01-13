@@ -17,9 +17,10 @@ def pass_args():
                                 "%T-%m-%d")
         time = request.form["time"]
 
+
     else:
         return render_template("HACKATHON.html")
-        
+     
 @app.errorhandler(404)
 def page_not_found_handler(e):
     return render_template("HACKATHON.html")
