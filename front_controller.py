@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request
 from datetime import datetime
-from ztmDatabaseControls import getBusStops
+from ztmDatabaseControls import *
 
 
 
-
-busStops = getBusStops()
+dic = getBusStops()
+busStops = []
+for i in dic:
+    busStops.append(str(dic[i].name))
 
 app=Flask(__name__)
 
@@ -21,8 +23,11 @@ def pass_args():
         first_stop = request.form['first_stop']
         last_stop = request.form['last_stop']
         date = datetime.strptime(request.form['date'],
-                                "%T-%m-%d")
-        time = request.form["time"]
+                                "%Y-%m-%d")
+        time = datetime.strptime(request.form["time"],"%H-%M-%S")
+
+
+
 
 
     else:
