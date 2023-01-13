@@ -29,7 +29,11 @@
                 </select>
 
                 <label for="last_stop">Przystanek końcowy:</label><br>
-                <input type="text" id="last_stop" name="last_stop"><br><br>
+                <select id="last_stop" name="last_stop">
+                  {% for busStop in BS %}
+                  <option value="{{busStop}}">{{busStop}}</option>
+                  {% endfor%}
+                </select><br><br>
               </label>
            
                 <label class="container">najszybsza opcja
