@@ -13,6 +13,9 @@ class busStop:
 
     def __init__(self, id, number, name, onDemand):
         self.lines = set()
+        self.number = number
+        self.name = name
+        self.onDemand = onDemand
         self.id = id
 
     def addLine(self, line):
@@ -22,6 +25,8 @@ class busStop:
 class busLine:
 
     def __init__(self, shortName, longName, id):
+        self.shortName = shortName
+        self.longName = longName
         self.stops = dict()
         self.trips = set()
         self.id = id
