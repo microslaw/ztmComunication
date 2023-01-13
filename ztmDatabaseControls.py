@@ -154,4 +154,3 @@ def getTimeBetweenStops(stopA, stopB, lineId, dateTime = today):
 
 
 update_database()
-print(getTimeBetweenStops(7988,7990,126))
