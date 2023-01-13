@@ -26,5 +26,6 @@ from ztmDatabaseControls import *
 
 busStops = getBusStops()
 
-print(busStops[324].lines)
-
+for i in busStops:
+    print(i, busStops[i].lines)
+    
