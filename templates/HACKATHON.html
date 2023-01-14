@@ -18,18 +18,22 @@
           </div>
           <div class="option_box">
             <img src="static/hackathon.png" class="logo_option"/> 
-            <form action="/pass" method="post">
+            <form action="/pass_args" method="post">
             <fieldset>
               <label class="container2">
                 <label for="first_stop">Przystanek początkowy:</label><br>
                 <select id="first_stop" name="first_stop" >
-                  {% for busStop in BS%}
-                  <option value="{{busStop.name}}">{{busStop.name}}</option>
+                  {% for busStop in BS %}
+                  <option value="{{busStop}}">{{busStop}}</option>
                   {% endfor%}
                 </select>
 
                 <label for="last_stop">Przystanek końcowy:</label><br>
-                <input type="text" id="last_stop" name="last_stop"><br><br>
+                <select id="last_stop" name="last_stop">
+                  {% for busStop in BS %}
+                  <option value="{{busStop}}">{{busStop}}</option>
+                  {% endfor%}
+                </select><br><br>
               </label>
            
                 <label class="container">najszybsza opcja
